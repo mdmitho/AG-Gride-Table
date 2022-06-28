@@ -40,9 +40,7 @@ const Table = () => {
       time_taken: "131.1",
     },
    
-    {  },
-    {  },
-    {  },
+  
  
   ]);
 
@@ -76,6 +74,7 @@ const Table = () => {
     });
     printResult(res);
   }, []);
+
   let newCount = 1;
   const createNewRowData = () => {
     const newData = {
@@ -106,8 +105,8 @@ const Table = () => {
 
 
   return (
-    <div className="container mx-auto">
-      <h1>This is table</h1>
+    <div className="">
+      <h1 className="my-5 text-5xl font-bold text-center text-white">Books Spreadsheets</h1>
       <div className="ag-theme-alpine mx-auto" style={{ width: 1000, height: 400 }}>
         <AgGridReact
           ref={gridRef}
@@ -121,20 +120,20 @@ const Table = () => {
           onCellClicked={cellClickedListener}
         />
       </div>
-      <div className="">
+      <div className="mx-auto">
         <button
-          className="btn mx-auto m-5 p-2  hover:bg-red-400 border mx-3"
+          className="btn  m-5 p-2 bg-white border mx-3"
           onClick={() => addItems(undefined)}
         >
           Add Items
         </button>
         <button
-          className="btn mx-auto m-5 p-2  hover:bg-red-400 border mr-3"
+          className="btn mx-auto m-5 p-2  bg-white border mr-3"
           onClick={onRemoveSelected}
         >
           Remove Selected
         </button>
-        <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  hover:bg-red-400 border">
+        <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  bg-white border">
           Generate
         </button>
       </div>

@@ -4,9 +4,8 @@ import Table from './Components/Table/Table';
 
 function App() {
   return (
-    <div className="App">
-        <h1 className='font-bold text-5xl'>hello</h1>
-        <Table></Table>
+    <div className="container mx-auto App">
+      <Table></Table>
     </div>
   );
 }     
