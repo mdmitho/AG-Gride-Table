@@ -21,45 +21,114 @@ const Table = () => {
   ]);
   const [rowData, setRowData] = useState([
     {
-      Person_Location: "Toyota",
-      match_count: "Celica",
-      miles_travelled: 35000,
-      number_vehicles: 35000,
-      fuel_used: 35000,
-      registration_id: 35000,
-      time_taken: 35000,
+      Person_Location: "orig",
+      match_count: "671/1000",
+      miles_travelled: "54",
+      number_vehicles: "3",
+      fuel_used: "545",
+      registration_id: "32421Gf",
+      time_taken: "438.5",
     },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 },
+   
+    {
+      Person_Location: "new",
+      match_count: "718/1000",
+      miles_travelled: "567",
+      number_vehicles: "",
+      fuel_used: "31",
+      registration_id: "234353T",
+      time_taken: "131.1",
+    },
+   
+    {  },
+    {  },
+    {  },
+ 
   ]);
+
+
+  
+
+  const cellClickedListener = useCallback((event) => {
+    console.log("cellClicked", event);
+  }, []);
 
   const defaultColDef = useMemo(() => {
     return {
       editable: true,
       resizable: true,
-      minWidth: 100,
-      flex: 1,
+    //   minWidth: 100,
+    //   flex: 1,
     };
   }, []);
 
-  const cellClickedListener = useCallback((event) => {
-    console.log("cellClicked", event);
+  const onBtnExport = useCallback(() => {
+    gridRef.current.api.exportDataAsCsv();
   }, []);
+
+  const addItems = useCallback((addIndex) => {
+    const newItems = [
+        createNewRowData(), 
+       ];
+    const res = gridRef.current.api.applyTransaction({
+      add: newItems,
+      addIndex: addIndex,
+    });
+    printResult(res);
+  }, []);
+  let newCount = 1;
+  const createNewRowData = () => {
+    const newData = {
+      
+    };
+    newCount++;
+    return newData;
+  };
+
+  const printResult = (res) => {
+    
+    if (res.add) {
+      res.add.forEach(function (rowNode) {
+        console.log("Added Row Node", rowNode);
+      });
+    }
+   
+  
+  };
+
+
   return (
     <div className="container mx-auto">
       <h1>This is table</h1>
-      <div className="ag-theme-alpine mx-auto" style={{ width: 1100, height: 400 }}>
+      <div className="ag-theme-alpine mx-auto" style={{ width: 1000, height: 400 }}>
         <AgGridReact
           ref={gridRef}
           rowData={rowData}
+          columnDefs={columnDefs}
+          animateRows={true}
+          popupParent={popupParent}
           defaultColDef={defaultColDef}
           suppressExcelExport={true}
-          popupParent={popupParent}
-          columnDefs={columnDefs}
+          rowSelection="multiple"
+          onCellClicked={cellClickedListener}
         />
+      </div>
+      <div className="">
+        <button
+          className="btn mx-auto m-5 p-2  hover:bg-red-400 border"
+          onClick={() => addItems(undefined)}
+        >
+          Add Items
+        </button>
+        <button onClick={onRemoveSelected}>Remove Selected</button>
+        <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  hover:bg-red-400 border">
+          Generate
+        </button>
       </div>
     </div>
   );
+
+
 };
 
 export default Table;
