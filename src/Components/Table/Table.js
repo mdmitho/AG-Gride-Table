@@ -92,9 +92,17 @@ const Table = () => {
         console.log("Added Row Node", rowNode);
       });
     }
-   
+    if (res.remove) {
+      res.remove.forEach(function (rowNode) {
+        console.log("Removed Row Node", rowNode);
+      });
+    }
   
   };
+  const onRemoveSelected = useCallback(() => {
+    var selectedRowData = gridRef.current.api.getSelectedRows();
+    gridRef.current.api.applyTransaction({ remove: selectedRowData });
+  }, []);
 
 
   return (
@@ -105,9 +113,9 @@ const Table = () => {
           ref={gridRef}
           rowData={rowData}
           columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
           animateRows={true}
           popupParent={popupParent}
-          defaultColDef={defaultColDef}
           suppressExcelExport={true}
           rowSelection="multiple"
           onCellClicked={cellClickedListener}
@@ -115,12 +123,17 @@ const Table = () => {
       </div>
       <div className="">
         <button
-          className="btn mx-auto m-5 p-2  hover:bg-red-400 border"
+          className="btn mx-auto m-5 p-2  hover:bg-red-400 border mx-3"
           onClick={() => addItems(undefined)}
         >
           Add Items
         </button>
-        <button onClick={onRemoveSelected}>Remove Selected</button>
+        <button
+          className="btn mx-auto m-5 p-2  hover:bg-red-400 border mr-3"
+          onClick={onRemoveSelected}
+        >
+          Remove Selected
+        </button>
         <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  hover:bg-red-400 border">
           Generate
         </button>
