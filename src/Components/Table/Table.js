@@ -120,25 +120,40 @@ const Table = () => {
           onCellClicked={cellClickedListener}
         />
       </div>
-      <div className="mx-auto">
-        <button
-          className="btn  m-5 p-2 bg-white border mx-3"
-          onClick={() => addItems(undefined)}
-        >
-          Add Items
-        </button>
-        <button
-          className="btn mx-auto m-5 p-2  bg-white border mr-3"
-          onClick={onRemoveSelected}
-        >
-          Remove Selected
-        </button>
-        <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  bg-white border">
-        
-        
-        
-          Generate
-        </button>
+      <div className="flex justify-center mx-auto">
+        <div className="">
+          <button
+            className="btn  m-5 p-2 bg-white border mx-3"
+            onClick={() => addItems(undefined)}
+          >
+            Add Items
+          </button>
+        </div>
+
+        <div className="">
+          <button
+            className="btn mx-auto m-5 p-2  bg-white border mr-3"
+            onClick={onRemoveSelected}
+          >
+            Remove Selected
+          </button>
+        </div>
+        <div className="">
+          <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  bg-white border">
+            <div className="flex">
+              <div className="">
+                <span>
+                  <img
+                    className="w-5 h-5 mr-1 mt-1"
+                    src="https://mpng.subpng.com/20190107/pyb/kisspng-scalable-vector-graphics-computer-icons-clip-art-p-asap-tangampcompany-5c335dab209568.8136441115468701871335.jpg"
+                    alt=""
+                  />
+                </span>
+              </div>
+              <div className="">Generate</div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );
