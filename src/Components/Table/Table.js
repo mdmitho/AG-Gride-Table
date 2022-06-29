@@ -11,13 +11,13 @@ const Table = () => {
       return document.body;
     }, []);
   const [columnDefs, setColumnDefs] = useState([
-    { field: "Person_Location" },
-    { field: "match_count" },
-    { field: "time_taken" },
-    { field: "miles_travelled" },
-    { field: "fuel_used" },
-    { field: "number_vehicles" },
-    { field: "registration_id" },
+    { field: "Person_Location", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "match_count", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "time_taken", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "miles_travelled", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "fuel_used", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "number_vehicles", cellStyle: { "border-color": "#e2e2e2" } },
+    { field: "registration_id", cellStyle: { "border-color": "#e2e2e2" } },
   ]);
   const [rowData, setRowData] = useState([
     {
@@ -107,7 +107,7 @@ const Table = () => {
   return (
     <div className="">
       <h1 className="my-5 text-5xl font-bold text-center text-white">Books Spreadsheets</h1>
-      <div className="ag-theme-alpine mx-auto" style={{ width: 1000, height: 400 }}>
+      <div className="ag-theme-alpine mx-auto lg:w-[1000px] lg:h-[500px] md:w-[700px] md:h-[400px] w-[400px] h-[200px]">
         <AgGridReact
           ref={gridRef}
           rowData={rowData}
@@ -134,6 +134,9 @@ const Table = () => {
           Remove Selected
         </button>
         <button onClick={onBtnExport} className="btn mx-auto m-5 p-2  bg-white border">
+        
+        
+        
           Generate
         </button>
       </div>
